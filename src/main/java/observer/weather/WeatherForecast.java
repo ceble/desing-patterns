@@ -18,6 +18,7 @@ public class WeatherForecast implements Observable{
     public void updateForecast(int temperature, int pressure) {
         this.temperature = temperature;
         this.pressure = pressure;
+        notifyObservers();
 
     }
 
@@ -44,7 +45,8 @@ public class WeatherForecast implements Observable{
     }
 
     public void notifyObservers() {
-        registeredObservers.toString();
-
+        for (Observer observer : registeredObservers) {
+            observer.updateForecast(this);
+        }
     }
 }
