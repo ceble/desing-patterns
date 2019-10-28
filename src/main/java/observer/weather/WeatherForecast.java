@@ -6,35 +6,45 @@ import java.util.Set;
 import observer.news.Observer;
 
 public class WeatherForecast implements Observable{
-    int temperature;
-    int pressure;
-    Set<Observer> registeredObservers = new HashSet<Observer>();
+    private int temperature;
+    private int pressure;
+    private Set<Observer> registeredObservers = new HashSet<Observer>();
 
-    public void updateForecast(final WeatherForecast weatherForecast) {
+    public WeatherForecast(final int temperature, final int pressure) {
+        this.temperature = temperature;
+        this.pressure = pressure;
+    }
+
+    public void updateForecast(int temperature, int pressure) {
+        this.temperature = temperature;
+        this.pressure = pressure;
 
     }
 
-    private int getTemperature() {
+    public int getTemperature() {
         return temperature;
     }
 
-    private int getPressure() {
+    public int getPressure() {
         return pressure;
     }
 
-    private Set<Observer> getRegisteredObservers() {
+    public Set<Observer> getRegisteredObservers() {
         return registeredObservers;
     }
 
     public void registerObserver(final Observer observer) {
+        registeredObservers.add(observer);
 
     }
 
     public void unregisterObserver(final Observer observer) {
+        registeredObservers.remove(observer);
 
     }
 
-    public void notifyObserver(final Observer observer) {
+    public void notifyObservers() {
+        registeredObservers.toString();
 
     }
 }
